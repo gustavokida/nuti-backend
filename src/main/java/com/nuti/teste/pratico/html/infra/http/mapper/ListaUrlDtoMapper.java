@@ -12,7 +12,7 @@ import java.util.List;
 public class ListaUrlDtoMapper {
     public ListaContagemTagDto map(List<Url> listaUrl){
         return ListaContagemTagDto.builder()
-                .listaContagem(listaUrl)
+                .listaUrlTagsContadas(listaUrl)
                 .build();
     }
 }

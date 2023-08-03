@@ -22,7 +22,7 @@ public class ProcessaUrlService {
             contagemTagService.contarTags(htmlBody, urlProcessada);
             listaUrlProcessada.add(urlProcessada);
         }
-
+        System.out.println("lista processada com sucesso");
         return listaUrlProcessada;
     }
 }

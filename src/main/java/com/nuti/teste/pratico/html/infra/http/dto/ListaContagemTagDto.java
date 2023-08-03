@@ -11,5 +11,5 @@ import java.util.List;
 @Getter
 @Setter
 public class ListaContagemTagDto {
-    private List<Url> listaContagem;
+    private List<Url> listaUrlTagsContadas;
 }

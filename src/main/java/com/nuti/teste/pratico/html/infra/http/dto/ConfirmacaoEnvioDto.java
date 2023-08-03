@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class ConfirmacaoEnvioDto {
     public ConfirmacaoEnvioDto(){
-        this.message = "mensagem enviada";
+        this.message = "Url processada";
     }
     private final String message;
 }

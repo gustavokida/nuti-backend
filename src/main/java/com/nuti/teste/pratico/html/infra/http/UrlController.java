@@ -6,7 +6,6 @@ import com.nuti.teste.pratico.html.infra.http.dto.ListaUrlDto;
 import com.nuti.teste.pratico.html.infra.http.mapper.ListaUrlDtoMapper;
 import com.nuti.teste.pratico.html.service.ProcessaUrlService;
 import com.nuti.teste.pratico.html.service.UrlMongoService;
-import com.nuti.teste.pratico.html.shared.exception.LeituraUrlException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class UrlController {
 
     @PostMapping("/enviar")
     public ResponseEntity<ConfirmacaoEnvioDto> enviar(@RequestBody ListaUrlDto urls) {
-        List<String> listaUrl = Arrays.stream(urls.getUrls().split(" ")).toList();
+        List<String> listaUrl = Arrays.stream(urls.getUrls().split("\n")).toList();
         var listaUrlProcessada = processaUrlService.execute(listaUrl);
         urlMongoService.salvarLista(listaUrlProcessada);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new ConfirmacaoEnvioDto());
