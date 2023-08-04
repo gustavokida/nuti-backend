@@ -1,19 +1,19 @@
 package com.nuti.teste.pratico.html.service;
 
-import com.nuti.teste.pratico.html.domain.HtmlBody;
-import com.nuti.teste.pratico.html.infra.url.HtmlBodyRepository;
-import com.nuti.teste.pratico.html.infra.url.dto.HtmlBodyResponseMapper;
+import com.nuti.teste.pratico.html.domain.UrlHtmlBody;
+import com.nuti.teste.pratico.html.infra.url.UrlRepository;
+import com.nuti.teste.pratico.html.infra.url.mapper.UrlHtmlBodyResponseMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class UrlService {
-    private final HtmlBodyRepository htmlBodyRepository;
-    private final HtmlBodyResponseMapper htmlBodyResponseMapper;
+    private final UrlRepository urlRepository;
+    private final UrlHtmlBodyResponseMapper urlHtmlBodyResponseMapper;
 
-    public HtmlBody get(String url) {
-        return htmlBodyResponseMapper.map(htmlBodyRepository.get(url));
+    public UrlHtmlBody get(String url) {
+        return urlHtmlBodyResponseMapper.map(urlRepository.get(url));
 
     }
 }

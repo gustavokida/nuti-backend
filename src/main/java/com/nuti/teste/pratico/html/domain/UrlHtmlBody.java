@@ -10,6 +10,6 @@ import org.jsoup.select.Elements;
 @AllArgsConstructor
 @Getter
 @Setter
-public class HtmlBody {
+public class UrlHtmlBody {
     private Elements body;
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class HtmlBodyRepositoryImpl implements HtmlBodyRepository {
+public class UrlRepositoryImpl implements UrlRepository {
     public Elements get(String url){
         try{
             Document doc = Jsoup.connect(url).get();

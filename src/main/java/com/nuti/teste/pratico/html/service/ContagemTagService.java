@@ -1,6 +1,6 @@
 package com.nuti.teste.pratico.html.service;
 
-import com.nuti.teste.pratico.html.domain.HtmlBody;
+import com.nuti.teste.pratico.html.domain.UrlHtmlBody;
 import com.nuti.teste.pratico.html.domain.Tag;
 import com.nuti.teste.pratico.html.domain.Url;
 import org.jsoup.nodes.Element;
@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service
 public class ContagemTagService {
-    public Url contarTags(HtmlBody htmlBody, Url url){
+    public Url contarTags(UrlHtmlBody urlHtmlBody, Url url){
         List<Tag> listaTag = new ArrayList<>();
-        for(Element elemento: htmlBody.getBody()){
+        for(Element elemento: urlHtmlBody.getBody()){
             adicionaTag(listaTag, elemento.tagName());
         }
         url.setListaTag(listaTag);
