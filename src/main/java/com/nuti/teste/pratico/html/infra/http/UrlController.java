@@ -4,8 +4,10 @@ import com.nuti.teste.pratico.html.infra.http.dto.ConfirmacaoEnvioDto;
 import com.nuti.teste.pratico.html.infra.http.dto.ListaContagemTagDto;
 import com.nuti.teste.pratico.html.infra.http.dto.ListaUrlDto;
 import com.nuti.teste.pratico.html.infra.http.mapper.ListaUrlDtoMapper;
+import com.nuti.teste.pratico.html.infra.http.mapper.UrlMySqlMapper;
 import com.nuti.teste.pratico.html.service.ProcessaUrlService;
 import com.nuti.teste.pratico.html.service.UrlMongoService;
+import com.nuti.teste.pratico.html.service.UrlMySqlService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,9 @@ import java.util.List;
 public class UrlController {
     private final ProcessaUrlService processaUrlService;
     private final UrlMongoService urlMongoService;
+    private final UrlMySqlService urlMySqlService;
     private final ListaUrlDtoMapper listaUrlDtoMapper;
+    private final UrlMySqlMapper urlMySqlMapper;
 
     @GetMapping("/listar")
     public ResponseEntity<ListaContagemTagDto> listar(){
@@ -34,7 +38,9 @@ public class UrlController {
     public ResponseEntity<ConfirmacaoEnvioDto> enviar(@RequestBody ListaUrlDto urls) {
         List<String> listaUrl = Arrays.stream(urls.getUrls().split("\n")).toList();
         var listaUrlProcessada = processaUrlService.execute(listaUrl);
+        var listaUrlMySql = urlMySqlMapper.map(listaUrlProcessada);
         urlMongoService.salvarLista(listaUrlProcessada);
+        urlMySqlService.salvarLista(listaUrlMySql);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new ConfirmacaoEnvioDto());
     }
 }
